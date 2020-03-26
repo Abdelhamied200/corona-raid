@@ -1,0 +1,58 @@
+@import "../../styles/inc/colors.scss";
+@import "../../styles/inc/mixins.scss";
+
+$playerH: 650px;
+$vidShift: -170px;
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .player {
+    width: 100%;
+    height: $playerH;
+    display: flex;
+    overflow: hidden;
+    video {
+      object-fit: cover;
+      margin: auto;
+      width: 100%;
+      height: $playerH - $vidShift;
+      margin-top: $vidShift;
+    }
+  }
+
+  .content {
+    position: absolute;
+    z-index: 4;
+
+    .container {
+      margin-bottom: 150px;
+    }
+
+    .title {
+      font-size: 81px;
+      text-transform: uppercase;
+    }
+    .sub-title {
+      font-size: 51px;
+      color: $accent;
+      font-weight: 300;
+      text-transform: capitalize;
+    }
+    .btn.main {
+      @include Btn("main");
+    }
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    height: 400px;
+    bottom: 35px;
+    background: $mainG;
+    z-index: 2;
+  }
+}
