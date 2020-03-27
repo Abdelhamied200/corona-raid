@@ -1,0 +1,62 @@
+@import "../../styles/inc/colors.scss";
+
+section.latest {
+  .title {
+    span.line {
+      width: 130px;
+    }
+  }
+
+  .results {
+    .part {
+      margin: 50px 0;
+    }
+    .world-wide,
+    .country {
+      span.line {
+        width: 70px;
+        margin: unset;
+      }
+      .title {
+        margin-bottom: 30px;
+      }
+      .title p {
+        font-size: 28px;
+        font-weight: 200;
+        color: $accent;
+        text-align: left;
+      }
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      .result {
+        display: flex;
+        align-items: center;
+        .ico {
+          margin-right: 30px;
+          img {
+            width: 50px;
+          }
+        }
+
+        .inf {
+          p {
+            text-align: left;
+          }
+          .num p {
+            font-size: 28px;
+            font-weight: 200;
+            letter-spacing: 5px;
+          }
+          .label p {
+            font-size: 12px;
+            text-transform: capitalize;
+            color: $accent;
+          }
+        }
+      }
+    }
+  }
+}
