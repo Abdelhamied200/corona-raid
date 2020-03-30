@@ -26,12 +26,31 @@ section.latest {
         color: $accent;
         text-align: left;
       }
+      .title .dropDown {
+        background: none;
+        border: none;
+        width: auto;
+        display: flex;
+        align-items: center;
+
+        .Dropdown-placeholder {
+          font-size: 28px;
+          font-weight: 200;
+          color: $accent;
+          text-align: left;
+        }
+        .Dropdown-arrow-wrapper span {
+          margin-bottom: -6px;
+          margin-left: 20px;
+          display: block;
+        }
+      }
     }
 
     .container {
       display: flex;
       justify-content: space-between;
-      .result {
+      .status {
         display: flex;
         align-items: center;
         .ico {

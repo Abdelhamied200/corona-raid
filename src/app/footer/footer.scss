@@ -1,0 +1,11 @@
+@import "../../styles/inc/colors.scss";
+
+footer {
+  background: $footerG;
+  padding-top: 180px;
+  p {
+    font-size: 18px;
+    padding: 20px 0;
+    text-transform: uppercase;
+  }
+}

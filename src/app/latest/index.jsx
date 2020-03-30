@@ -1,115 +1,53 @@
-import React from "react";
+import React, { Component } from "react";
 
 import "./latest.scss";
+import WorldWide from "./world-wide";
+import Country from "./country";
+import Axios from "axios";
 
-const Latest = props => {
-  return (
-    <section className="latest">
-      <div className="title">
-        <h2>Latest results</h2>
-        <span className="line"></span>
-      </div>
+class Result {
+  constructor(res) {
+    this.c = res[0];
+    this.r = res[1];
+    this.d = res[2];
+  }
+}
 
-      <div className="results">
-        <div className="part world-wide">
-          <div className="title">
-            <p>Worldwide</p>
-            <span className="line"></span>
-          </div>
+class Latest extends Component {
+  state = {
+    worldWide: {}
+  };
 
-          <div className="container">
-            <div className="result confirmed">
-              <div className="ico">
-                <img src={require("../../assets/icons/confirmed.svg")} alt="" />
-              </div>
-              <div className="inf">
-                <div className="num">
-                  <p>1234</p>
-                </div>
-                <div className="label">
-                  <p>confirmed</p>
-                </div>
-              </div>
-            </div>
-            <div className="result recovered">
-              <div className="ico">
-                <img src={require("../../assets/icons/recovered.svg")} alt="" />
-              </div>
-              <div className="inf">
-                <div className="num">
-                  <p>1234</p>
-                </div>
-                <div className="label">
-                  <p>recovered</p>
-                </div>
-              </div>
-            </div>
-            <div className="result death">
-              <div className="ico">
-                <img src={require("../../assets/icons/death.svg")} alt="" />
-              </div>
-              <div className="inf">
-                <div className="num">
-                  <p>1234</p>
-                </div>
-                <div className="label">
-                  <p>death</p>
-                </div>
-              </div>
-            </div>
-          </div>
+  componentDidMount() {
+    let url =
+      "https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/brief";
+
+    // getting worldwide results
+    Axios.get(url)
+      .then(res => {
+        let data = new Result(Object.values(res.data));
+        this.setState({ worldWide: data });
+      })
+      .catch(err => {
+        console.log("check your connection", err);
+      });
+  }
+
+  render() {
+    return (
+      <section className="latest">
+        <div className="title">
+          <h2>Latest results</h2>
+          <span className="line"></span>
         </div>
-        <div className="part country">
-          <div className="title">
-            <p>Country</p>
-            <span className="line"></span>
-          </div>
 
-          <div className="container">
-            <div className="result confirmed">
-              <div className="ico">
-                <img src={require("../../assets/icons/confirmed.svg")} alt="" />
-              </div>
-              <div className="inf">
-                <div className="num">
-                  <p>1234</p>
-                </div>
-                <div className="label">
-                  <p>confirmed</p>
-                </div>
-              </div>
-            </div>
-            <div className="result recovered">
-              <div className="ico">
-                <img src={require("../../assets/icons/recovered.svg")} alt="" />
-              </div>
-              <div className="inf">
-                <div className="num">
-                  <p>1234</p>
-                </div>
-                <div className="label">
-                  <p>recovered</p>
-                </div>
-              </div>
-            </div>
-            <div className="result death">
-              <div className="ico">
-                <img src={require("../../assets/icons/death.svg")} alt="" />
-              </div>
-              <div className="inf">
-                <div className="num">
-                  <p>1234</p>
-                </div>
-                <div className="label">
-                  <p>death</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="results">
+          <WorldWide {...this.state.worldWide} />
+          <Country />
         </div>
-      </div>
-    </section>
-  );
-};
+      </section>
+    );
+  }
+}
 
 export default Latest;
